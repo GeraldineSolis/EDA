@@ -16,22 +16,35 @@ class LinkedQueue:
 
     def is_empty(self):
         """Return True if queue is empty."""
-        return 
+        return self._size == 0
 
     def enqueue(self, item):
         """Add item to rear."""
-        # Your solution here 🛠️
-        return       # safe default
+        node = Node(item)
+        
+        if self.rear:
+            self.rear.next = node
+            self.rear = node
+        else:
+            self.front = self.rear = node
+        self._size += 1
 
     def dequeue(self):
         """Remove and return front item or None."""
-        # Your solution here 🛠️
-        return None  # safe default
+        if not self.front:
+            return None
+        data = self.front.data
+        self.front = self.front.next
+
+        if not self.front:
+            self.rear = None
+        
+        self._size -= 1
+        return data
 
     def size(self):
         """Return number of elements."""
-        # Your solution here 🛠️
-        return 0     # safe default
+        return self._size
 
 def test_o5_2():
     q = LinkedQueue()
